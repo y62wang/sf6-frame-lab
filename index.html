@@ -1,4 +1,4 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SF6 Frame Lab</title><style>
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><meta http-equiv='Cache-Control' content='no-store'><title>SF6 Frame Lab</title><style>
 :root{--bg:#0f1115;--panel:#171a21;--panel2:#1e222c;--line:#2a2f3a;--txt:#e6e9ef;--dim:#8b93a3;
 --pos:#3fb950;--even:#d29922;--neg:#f85149;--acc:#58a6ff;}
 *{box-sizing:border-box}
@@ -8,9 +8,17 @@ border-bottom:1px solid var(--line);padding:16px 24px}
 header.top h1{margin:0 0 4px;font-size:20px}
 header.top .sub{color:var(--dim);font-size:13px}
 .nav{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.nav-divider{border-top:1px solid var(--line);margin:14px 0 12px}
 .nav a{color:var(--acc);text-decoration:none;background:var(--panel2);padding:3px 9px;border-radius:6px;font-size:12px;border:1px solid var(--line)}
 .nav a:hover{background:#242a36}
 .nav a.on{background:var(--acc);color:#0b0d11;border-color:var(--acc);font-weight:700}
+.topictabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.topictabs a,.topictabs span{display:inline-flex;align-items:center;gap:5px;font-size:13px;padding:5px 12px;border-radius:7px;border:1px solid var(--line);text-decoration:none}
+.topictabs a{color:var(--acc);background:var(--panel2)}
+.topictabs a:hover{background:#242a36;border-color:var(--acc)}
+.topictabs a.on{background:var(--acc);color:#0b0d11;border-color:var(--acc);font-weight:700}
+.topictabs .soon{color:var(--dim);background:transparent;cursor:default}
+.topictabs .soon small{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--panel2);color:var(--dim);padding:1px 5px;border-radius:4px}
 h1 a.home{color:var(--acc);text-decoration:none}
 .wrap{padding:24px;max-width:1400px;margin:0 auto}
 h2.sec{font-size:16px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin:24px 0 12px}
@@ -76,6 +84,7 @@ td.even{color:var(--even);font-weight:600}
 td.neg{color:var(--neg)}
 td.neu{color:var(--dim)}
 td.before{color:var(--dim);font-weight:600}
+td.exec-adv{font-weight:700;color:var(--acc)}
 td.arrow{color:var(--dim);text-align:center;padding:0}
 .man{color:var(--even);font-size:10px;background:rgba(210,153,34,.12);padding:1px 4px;border-radius:3px;margin-left:3px}
 .tag{font-size:9.5px;padding:1px 5px;border-radius:3px;margin-left:4px;font-weight:600;vertical-align:middle;white-space:nowrap}
@@ -122,13 +131,73 @@ tr.shimmy-row td.mv{color:#ff8b52}
 tr.shimmy-row{background:rgba(240,120,60,.05)}
 td.type{white-space:nowrap}
 td.pos-col{white-space:nowrap}
+table.meaty thead tr:not(.grp) th{cursor:pointer;user-select:none}
+table.meaty thead tr:not(.grp) th:hover{color:var(--acc)}
+table.meaty thead tr:not(.grp) th[data-dir='asc']::after{content:' ▲';font-size:9px}
+table.meaty thead tr:not(.grp) th[data-dir='desc']::after{content:' ▼';font-size:9px}
 .ty{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.03em}
 .ty-plus{background:rgba(63,185,80,.16);color:var(--pos)}
 .ty-meaty{background:var(--panel2);color:var(--dim)}
 .ty-shimmy{background:rgba(240,120,60,.16);color:#ff8b52}
+.ty-throw{background:rgba(210,153,34,.16);color:var(--even)}
+tr.throw-row td.mv{color:var(--even)}
+tr.throw-row{background:rgba(210,153,34,.05)}
 .ty-sj{background:rgba(88,166,255,.16);color:var(--acc)}
 .ty-ej{background:rgba(88,166,255,.1);color:#7fb0e8}
 tr.jump-row{background:rgba(88,166,255,.05)}
 tr.jump-row td.mv{color:var(--acc)}
 footer{color:var(--dim);font-size:12px;padding:20px 24px;border-top:1px solid var(--line);margin-top:20px}
-</style></head><body><header class='top'><h1>SF6 Frame Lab</h1><div class='sub'>Frame-data tools for all 31 characters &middot; computed from the FAT spreadsheet</div><div class='legend'>Pick a topic. Everything is generated from the FAT frame-data spreadsheet &mdash; nothing is hand-typed.</div></header><div class='wrap'><h2 class='sec'>Topics</h2><div class='topics'><a class='topic live' href='okizeme.html'><span class='topic-status st-live'>Live</span><div class='topic-top'><div class='topic-icon'>&#x1F94B;</div><div class='topic-title'>Okizeme</div></div><div class='topic-desc'>Every meaty, safe-jump, and plus-frame wake-up setup per character, with the exact framekill/movement to reach the timing.</div><div class='topic-stat'>31 characters &middot; open &rarr;</div></a><div class='topic next'><span class='topic-status st-next'>Up next</span><div class='topic-top'><div class='topic-icon'>&#x1F517;</div><div class='topic-title'>Combos</div></div><div class='topic-desc'>Every combo route from a starter command &mdash; by hit type (normal / counter / punish counter) &mdash; ending in the frame advantage left after the combo. Searchable and filterable.</div><div class='topic-stat'>in development</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1FAA4;</div><div class='topic-title'>Frame Traps</div></div><div class='topic-desc'>Stagger pressure that leaves a gap small enough to counter-hit a mash but too big to be thrown &mdash; per starter, with the gap size.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x2696;</div><div class='topic-title'>Punish Lookup</div></div><div class='topic-desc'>What punishes a given move at each frame gap, and the best punish counter route into it.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1F4CB;</div><div class='topic-title'>Move Browser</div></div><div class='topic-desc'>The full FAT frame data for every character &mdash; sortable and filterable by startup, on-block, type, and guard level.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1F5FA;</div><div class='topic-title'>Matchup Notes</div></div><div class='topic-desc'>Per-pair anti-strategy: what to watch for and how to counter it.</div><div class='topic-stat'>planned</div></div></div></div><footer>Every page is generated from <b>FAT - SF6 Frame Data.xlsx</b> &mdash; nothing is hand-typed. Okizeme validated 18/18 against the SuperCombo wiki oki table. <a href='index.html' style='color:var(--acc)'>&larr; all topics</a></footer></body></html>
+.cbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:16px 0}
+.cbar input.search{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:14px;min-width:240px}
+.cbar input.search:focus{outline:none;border-color:var(--acc)}
+table.combos{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+table.combos th{text-align:left;color:var(--dim);font-weight:600;border-bottom:1px solid var(--line);padding:6px 8px;white-space:nowrap;cursor:pointer;user-select:none}
+table.combos th:hover{color:var(--txt)}
+table.combos td{padding:6px 8px;border-bottom:1px solid #21252e;vertical-align:top}
+table.combos tr.crow:hover{background:var(--panel2)}
+td.route{font-family:ui-monospace,monospace;font-weight:600;line-height:1.7}
+td.starter{font-family:ui-monospace,monospace;font-weight:700;white-space:nowrap}
+.hbadge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.h-normal{background:var(--panel2);color:var(--dim)}
+.h-ch{background:rgba(210,153,34,.16);color:var(--even)}
+.h-pc{background:rgba(248,81,73,.16);color:var(--neg)}
+td.adv-cell{white-space:nowrap;font-weight:700}
+.adv-btn{background:rgba(88,166,255,.12);color:var(--acc);border:1px solid rgba(88,166,255,.4);border-radius:6px;padding:3px 9px;font-weight:700;cursor:pointer;font-size:12px}
+.adv-btn:hover{background:var(--acc);color:#0b0d11}
+.adv-flat{color:var(--dim);font-weight:600}
+.res{font-size:11px;color:var(--dim);white-space:nowrap}
+.res .rd{color:#ff8b52;font-weight:700}
+.res .rs{color:#bc8cff;font-weight:700}
+.cmeta{color:var(--dim);font-size:12px;margin:4px 0 0}
+.chip{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);cursor:pointer}
+.chip.on{background:var(--acc);color:#0b0d11;border-color:var(--acc);font-weight:600}
+#okiPanel{position:fixed;top:0;right:0;height:100vh;width:min(720px,94vw);background:var(--panel);border-left:1px solid var(--acc);
+box-shadow:-8px 0 30px rgba(0,0,0,.5);transform:translateX(102%);transition:transform .22s ease;z-index:50;overflow-y:auto;padding:20px 22px}
+#okiPanel.open{transform:translateX(0)}
+#okiPanel h3{margin:0 0 2px;font-size:18px}
+#okiPanel .pclose{position:absolute;top:14px;right:16px;background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:4px 11px;cursor:pointer;font-size:16px}
+#okiPanel .psub{color:var(--dim);font-size:12px;margin-bottom:14px}
+#okiBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .22s;z-index:49}
+#okiBackdrop.open{opacity:1;pointer-events:auto}
+.badge.ce{background:rgba(88,166,255,.15);color:var(--acc);border:1px solid rgba(88,166,255,.4)}
+table.combos th.sortable{cursor:pointer}
+table.combos th.sortable:hover{color:var(--txt)}
+table.combos th .arw{opacity:.35;font-size:10px;margin-left:3px}
+table.combos th.sorted{color:var(--acc)}
+table.combos th.sorted .arw{opacity:1}
+.ctag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;margin:1px 3px 1px 0;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.t-maxdmg{background:rgba(248,81,73,.16);color:var(--neg)}
+.t-oki{background:rgba(88,166,255,.16);color:var(--acc)}
+.t-hkd{background:rgba(188,140,255,.16);color:#bc8cff}
+.t-free{background:rgba(63,185,80,.14);color:var(--pos)}
+.t-super{background:rgba(188,140,255,.16);color:#bc8cff}
+.t-hard{background:rgba(210,153,34,.16);color:var(--even)}
+.t-corner{background:rgba(240,120,60,.16);color:#ff8b52}
+td.tags-col{min-width:150px}
+.route-gloss{color:var(--dim);font-size:11px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:400;margin-top:3px}
+input.advin{background:var(--panel2);color:var(--acc);border:1px solid var(--acc);border-radius:6px;font-size:14px;font-weight:700;width:56px;padding:5px 6px;text-align:center}
+input.advin:focus{outline:none}
+td.starter .su{display:block;color:var(--dim);font-size:10.5px;font-weight:400;margin-top:1px}
+td.soh-cell{white-space:nowrap;font-weight:700}
+td.soh-cell .pos{color:var(--pos)}td.soh-cell .even{color:var(--even)}td.soh-cell .neg{color:var(--neg)}
+</style></head><body><header class='top'><h1>SF6 Frame Lab</h1><div class='sub'>Frame-data tools for all 31 characters &middot; computed from the FAT spreadsheet</div><div class='legend'>Pick a topic. Everything is generated from the FAT frame-data spreadsheet &mdash; nothing is hand-typed.</div></header><div class='wrap'><h2 class='sec'>Topics</h2><div class='topics'><a class='topic live' href='okizeme.html'><span class='topic-status st-live'>Live</span><div class='topic-top'><div class='topic-icon'>&#x1F94B;</div><div class='topic-title'>Okizeme</div></div><div class='topic-desc'>Every meaty, safe-jump, and plus-frame wake-up setup per character, with the exact framekill/movement to reach the timing.</div><div class='topic-stat'>31 characters &middot; open &rarr;</div></a><a class='topic live' href='combos.html'><span class='topic-status st-live'>Live</span><div class='topic-top'><div class='topic-icon'>&#x1F517;</div><div class='topic-title'>Combos</div></div><div class='topic-desc'>Every combo route from a starter command &mdash; by hit type (normal / counter / punish counter) &mdash; ending in the frame advantage left after the combo. Searchable and filterable.</div><div class='topic-stat'>31 characters &middot; open &rarr;</div></a><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1FAA4;</div><div class='topic-title'>Frame Traps</div></div><div class='topic-desc'>Stagger pressure that leaves a gap small enough to counter-hit a mash but too big to be thrown &mdash; per starter, with the gap size.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x2696;</div><div class='topic-title'>Punish Lookup</div></div><div class='topic-desc'>What punishes a given move at each frame gap, and the best punish counter route into it.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1F4CB;</div><div class='topic-title'>Move Browser</div></div><div class='topic-desc'>The full FAT frame data for every character &mdash; sortable and filterable by startup, on-block, type, and guard level.</div><div class='topic-stat'>planned</div></div><div class='topic locked'><span class='topic-status st-planned'>Planned</span><div class='topic-top'><div class='topic-icon'>&#x1F5FA;</div><div class='topic-title'>Matchup Notes</div></div><div class='topic-desc'>Per-pair anti-strategy: what to watch for and how to counter it.</div><div class='topic-stat'>planned</div></div></div></div><footer>Every page is generated from <b>FAT - SF6 Frame Data.xlsx</b> &mdash; nothing is hand-typed. Okizeme validated 18/18 against the SuperCombo wiki oki table. <a href='index.html' style='color:var(--acc)'>&larr; all topics</a></footer></body></html>
